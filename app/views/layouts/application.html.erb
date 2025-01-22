@@ -22,8 +22,22 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
   </head>
 
-  <body>
-    <%= button_to "Log out", session_path, method: :delete if authenticated? %>
-    <%= yield %>
+  <body class="bg-base-200 w-screen h-screen">
+    <nav
+      class="
+        navbar sticky top-0 z-40 h-16 px-8 text-base-content backdrop-blur bg-base-100
+        bg-opacity-90 shadow-sm
+      "
+    >
+      <a href="/" class="flex-1 text-xl"><h2>CalendarApp</h2></a>
+      <% if authenticated? %>
+        <%= button_to "Log out", session_path, method: :delete, class: "btn btn-primary" %>
+      <% else %>
+        <%= button_to "Log in", new_session_path, method: :get, class: "btn btn-primary" %>
+      <% end %>
+    </nav>
+    <main class="w-full h-[calc(100vh-8rem)]">
+      <%= yield %>
+    </main>
   </body>
 </html>

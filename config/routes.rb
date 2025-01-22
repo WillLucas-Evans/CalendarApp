@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-    resource :session
+    get "/login", to: "sessions#new", as: :new_session
+    get "/signup", to: "registrations#new"
+    resource :session, except: %i[ "new" ]
     resources :passwords, param: :token
     # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -13,5 +15,8 @@ Rails.application.routes.draw do
 
     # Defines the root path route ("/")
     # root "posts#index"
-    root "events#index"
+
+
+    root "static_pages#home"
+    get "/calendar", to: "events#index"
 end
