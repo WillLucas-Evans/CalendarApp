@@ -4,7 +4,7 @@
       <span
         class="
           col-start-1 row-start-1
-          bg-[linear-gradient(90deg,theme(colors.info)_0%,theme(colors.success)_9%,theme(colors.success)_42%,theme(colors.primary)_47%,theme(colors.accent)_100%)]
+          bg-[linear-gradient(90deg,theme(colors.info)_0%,theme(colors.success)_9%,theme(colors.secondary)_42%,theme(colors.primary)_47%,theme(colors.accent)_100%)]
           bg-clip-text blur-xl [-webkit-text-fill-color:transparent]
           [transform:translate3d(0,0,0)] before:content-[attr(data-text)]
         "
@@ -15,7 +15,7 @@
       <span
         class="
           [&::selection]:text-base-content h-11 relative col-start-1 row-start-1
-          bg-[linear-gradient(90deg,theme(colors.info)_0%,theme(colors.success)_9%,theme(colors.success)_42%,theme(colors.primary)_47%,theme(colors.accent)_100%)]
+          bg-[linear-gradient(90deg,theme(colors.info)_0%,theme(colors.success)_9%,theme(colors.secondary)_42%,theme(colors.primary)_47%,theme(colors.accent)_100%)]
           bg-clip-text [-webkit-text-fill-color:transparent] [&::selection]:bg-blue-700/20
         "
       >
@@ -27,7 +27,7 @@
     <% if authenticated? %>
       <%= link_to "Your Calendar", "/calendar", class: "btn btn-primary" %>
     <% else %>
-      <%= link_to "Sign Up", "/signup", class: "btn btn-primary" %>
+      <%= link_to "Sign Up", "/signup/new", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

@@ -23,20 +23,102 @@
   </head>
 
   <body class="bg-base-200 w-screen h-screen">
+    <div class=" fixed top-16 w-screen h-[calc(100vh-4rem)] ">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        version="1.1"
+        width="1080"
+        height="1080"
+        viewBox="0 0 1080 1080"
+        xml:space="preserve"
+        class="z-0 opacity-30"
+      >
+        <desc>Created with Fabric.js 5.2.4</desc>
+        <defs>
+        </defs>
+        <g
+          transform="matrix(1 0 0 1 540 540)"
+          id="26902bc4-6cc5-474c-84f9-195c1637dced"
+        >
+          <rect
+            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: var(--a); fill-rule: nonzero; opacity: 1; visibility: hidden;"
+            vector-effect="non-scaling-stroke"
+            x="-540"
+            y="-540"
+            rx="0"
+            ry="0"
+            width="1080"
+            height="1080"
+          />
+        </g>
+        <g
+          transform="matrix(1 0 0 1 540 540)"
+          id="19d268af-a0eb-4281-ad8f-7d4a323d49e2"
+        >
+        </g>
+        <g
+          transform="matrix(13.13 -13.13 0.71 0.71 509.41 591.25)"
+          id="c4c9b06c-26d6-424a-8c46-2966ffe7b4ae"
+        >
+          <rect
+            style="stroke: rgb(0,0,0); stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: var(--fallback-a); fill: oklch(var(--a)); fill-rule: nonzero; opacity: 1;"
+            vector-effect="non-scaling-stroke"
+            x="-37.4585"
+            y="-19.4165"
+            rx="0"
+            ry="0"
+            width="74.917"
+            height="45"
+          />
+        </g>
+        <g
+          transform="matrix(13.13 -13.13 0.71 0.71 12.48 652.01)"
+          id="c4c9b06c-26d6-424a-8c46-2966ffe7b4ae"
+        >
+          <rect
+            style="stroke: rgb(0,0,0); stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: var(--fallback-a); fill: oklch(var(--a)); fill-rule: nonzero; opacity: 1;"
+            vector-effect="non-scaling-stroke"
+            x="-37.46"
+            y="-19.415"
+            rx="0"
+            ry="0"
+            width="74.92"
+            height="15"
+          />
+        </g>
+        <g
+          transform="matrix(13.13 -13.13 0.71 0.71 488.18 811.42)"
+          id="c4c9b06c-26d6-424a-8c46-2966ffe7b4ae"
+        >
+          <rect
+            style="stroke: rgb(0,0,0); stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: var(--fallback-in); fill: oklch(var(--in)); fill-rule: nonzero; opacity: 1;"
+            vector-effect="non-scaling-stroke"
+            x="-37.46"
+            y="-19.415"
+            rx="0"
+            ry="0"
+            width="74.92"
+            height="35"
+          />
+        </g>
+      </svg>
+    </div>
+
     <nav
       class="
         navbar sticky top-0 z-40 h-16 px-8 text-base-content backdrop-blur bg-base-100
         bg-opacity-90 shadow-sm
       "
     >
-      <a href="/" class="flex-1 text-xl"><h2>CalendarApp</h2></a>
+      <%= link_to "CalendarApp", root_url, class: "flex-1 text-xl" %>
       <% if authenticated? %>
         <%= button_to "Log out", session_path, method: :delete, class: "btn btn-primary" %>
       <% else %>
         <%= button_to "Log in", new_session_path, method: :get, class: "btn btn-primary" %>
       <% end %>
     </nav>
-    <main class="w-full h-[calc(100vh-8rem)]">
+    <main class="z-10 relative w-full h-[calc(100vh-8rem)]">
       <%= yield %>
     </main>
   </body>

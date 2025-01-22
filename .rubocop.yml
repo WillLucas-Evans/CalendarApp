@@ -8,7 +8,14 @@ inherit_gem: { rubocop-rails-omakase: rubocop.yml }
 #   Enabled: false
 #
 Layout/AccessModifierIndentation:
-  EnforcedStyle: indent
+  EnforcedStyle: outdent 
+
+Layout/IndentationWidth:
+  Enabled: true
 
 Layout:
   IndentationWidth: 4
+
+Layout/IndentationConsistency:
+  Enabled: true
+
