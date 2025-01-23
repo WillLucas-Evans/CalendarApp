@@ -1,0 +1,22 @@
+<div
+  class="
+    border rounded-2xl overflow-scroll scrollbar-none border-base-100 h-full w-96
+    flex flex-col gap-6 p-2 relative
+  "
+>
+  <% for h in 0..23 do %>
+    <div class="flex gap-2 items-center">
+      <p class="w-16"><%= "0" if h < 10 %><%= h %>:00</p>
+      <hr class="w-full">
+    </div>
+  <% end %>
+
+  <div
+    class="
+      bg-primary absolute top-[10rem] w-[calc(100%-4.75rem)] h-16 right-2 rounded-lg
+      p-2
+    "
+  >
+    <p>Ballet</p>
+  </div>
+</div>

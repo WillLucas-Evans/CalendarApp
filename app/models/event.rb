@@ -2,8 +2,8 @@ class Event < ApplicationRecord
   belongs_to :user
 
   validates :name, presence: true
-  validates :time, presence: true
-  validates :length, presence: true
+  validates :start_time, presence: true
+  validates :end_time, presence: true
 
-  validates :length, numericality: { greater_than_or_equal_to: 0 }
+  validates :end_time, numericality: { greater_than: :start_time }
 end

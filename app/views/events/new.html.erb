@@ -1,0 +1,38 @@
+<div
+  class="
+    h-[calc(100%-4rem)] flex flex-col items-center w-[clamp(350px,30vw,600px)]
+    mx-auto px-4 bg-primary-content text-primary mt-16 rounded-2xl p-4
+    place-content-center
+  "
+>
+  <%= form_with model: @event, class: "w-full text-center text-neutral-content" do |form| %>
+    <%= render partial: "partials/glow", locals: { text: "New Event!" } %>
+
+    <hr class="mb-4">
+
+    <label class="input input-bordered flex items-center gap-2 mb-8">
+      <%= form.text_field :name,
+                      required: true,
+                      placeholder: "Event Name",
+                      class: "w-full" %><br>
+    </label>
+
+    <div class="flex gap-2 mb-8 items-center">
+      <p class="w-24">Start Time:</p>
+      <label class="input input-bordered grow">
+        <%= form.datetime_field :start_time, required: true, class: "w-full h-full" %>
+      </label>
+    </div>
+
+    <div class="flex gap-2 mb-8 items-center">
+      <p class="w-24">End Time:</p>
+      <label class="input input-bordered grow">
+        <%= form.datetime_field :end_time, required: true, class: "w-full h-full" %>
+      </label>
+    </div>
+
+    <%= tag.div(flash[:alert], class: "text-error") if flash[:alert] %>
+    <%= tag.div(flash[:notice], class: "text-success") if flash[:notice] %>
+    <%= form.submit "Create event", class: "btn btn-accent w-full mb-2" %>
+  <% end %>
+</div>

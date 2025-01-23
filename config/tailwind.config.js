@@ -19,5 +19,6 @@ module.exports = {
         // require('@tailwindcss/typography'),
         // require('@tailwindcss/container-queries'),
         require('daisyui'),
+        require('tailwind-scrollbar'),
     ]
 }
