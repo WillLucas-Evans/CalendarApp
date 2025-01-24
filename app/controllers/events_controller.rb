@@ -4,13 +4,13 @@ class EventsController < ApplicationController
     @sorted_events = Hash[]
 
     if params[:date]
-      @focused_date = Time.at(params[:date].to_i).to_datetime
+      @focused_date = Time.at(params[:date].to_i).to_datetime.beginning_of_day
     else
       @focused_date = DateTime.now.beginning_of_day
     end
 
     for event in @events do
-      if !@sorted_events[event.start_time.beginning_of_day]
+      if !@sorted_events[event.start_time.beginning_of_day.to_datetime]
         @sorted_events[event.start_time.beginning_of_day.to_datetime] = [ event ]
       else
         @sorted_events[event.start_time.beginning_of_day.to_datetime].push(event)
@@ -23,14 +23,18 @@ class EventsController < ApplicationController
   end
 
   def edit
-    puts "boop"
-    @test = "Hi"
+    res = Event.find(params[:id])
+    if res.user == Current.user
+      @event = res
+    end
   end
 
   def update
     @event = Event.find(params[:id])
-    if @event.update(event_params)
+    if @event.update(event_params) && @event.user == Current.user
       redirect_to events_path
+    else
+      redirect_to update_event_path(@event)
     end
   end
 
@@ -45,9 +49,11 @@ class EventsController < ApplicationController
     end
   end
 
-  def edit
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+    redirect_to events_path
   end
-
 private
 
   def event_params

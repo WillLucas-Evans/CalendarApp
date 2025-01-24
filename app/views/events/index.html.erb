@@ -1,6 +1,98 @@
 <div class="w-full h-full flex">
-  <nav class="h-[calc(100%+4rem)] w-80 p-4 bg-base-300">
-    <%= button_to "New", new_event_path, method: :get, class: "btn btn-accent w-full" %>
+  <nav
+    class="
+      h-[calc(100%+4rem)] flex flex-col w-80 p-4 bg-base-300 overflow-scroll
+    "
+  >
+    <div class="grid place-content-center">
+
+      <%= render partial: "partials/glow",
+      locals: {
+        text: @focused_date.strftime("%e %b %Y"),
+      } %>
+    </div>
+    <% for mon in 1..12 do %>
+      <% if mon == @focused_date.month %>
+        <p class="text-accent text-center text-lg border-t py-2"><%= @focused_date.strftime("%B") %></p>
+        <table class="flex place-content-center w-full">
+          <tbody class="grid">
+            <tr class="grid grid-cols-[repeat(7,2rem)] h-8">
+              <td class="grid place-content-center">M</td>
+              <td class="grid place-content-center">T</td>
+              <td class="grid place-content-center">W</td>
+              <td class="grid place-content-center">T</td>
+              <td class="grid place-content-center">F</td>
+              <td class="grid place-content-center">S</td>
+              <td class="grid place-content-center">S</td>
+            </tr>
+            <% counter = 0
+            inner_counter = 1
+            start_of_month = DateTime.new(@focused_date.year, @focused_date.month, 1)
+            lengths = [
+              31,
+              28 + (Date.leap?(@focused_date.year) ? 1 : 0),
+              31,
+              30,
+              31,
+              30,
+              31,
+              31,
+              30,
+              31,
+              30,
+              31,
+            ] %>
+            <% while counter <= lengths[mon - 1] %>
+              <tr class="grid grid-cols-[repeat(7,2rem)] h-8">
+                <% while inner_counter < 8 %>
+                  <% if counter == 0 && inner_counter < start_of_month.strftime("%u").to_i
+                    inner_counter += 1
+                  elsif counter == 0 && inner_counter == start_of_month.strftime("%u").to_i
+                    counter += 1
+                    inner_counter += 1
+                  else
+                    counter += 1
+                    inner_counter += 1
+                  end %>
+                  <% if counter > 0 && counter <= lengths[mon - 1] %>
+                    <td
+                      class="
+                        <%= counter == @focused_date.day ? "bg-primary rounded-full" : "" %> grid place-content-center
+                      "
+                    ><a
+                        href="<%=events_path + "?date=" + DateTime.new(@focused_date.year, @focused_date.month, counter).to_time.to_i.to_s %>"
+                      ><%= counter %></a></td>
+                  <% else %>
+                    <td></td>
+                  <% end %>
+                <% end %>
+              </tr>
+              <% inner_counter = 1 %>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <a
+          href="<%= events_path + "?date=" + DateTime.new(@focused_date.year, mon, 1).to_time.to_i.to_s %>"
+          class="
+            border-t text-lg text-center py-2 my-2 hover:text-primary transition-colors
+            no-underline block
+          "
+        ><%= DateTime.new(0, mon, 1).strftime("%B") %></a>
+      <% end %>
+    <% end %>
+
+    <div class="flex place-content-evenly">
+      <a
+        class = "hover:text-primary transition-colors"
+        href = "<%= events_path + "?date=" + DateTime.new(@focused_date.year - 1, 1, 1).to_time.to_i.to_s%>"
+      ><%= @focused_date.year - 1 %></a>
+      <p class="text-secondary text-lg"><%= @focused_date.year %></p>
+      <a
+        class = "hover:text-primary transition-colors"
+        href = "<%= events_path + "?date=" + DateTime.new(@focused_date.year + 1, 1, 1).to_time.to_i.to_s%>"
+      ><%= @focused_date.year + 1 %></a>
+    </div>
   </nav>
 
   <div class="grow h-full pt-16 px-8 flex place-content-center">
@@ -10,4 +102,9 @@
       start: @focused_date,
     } %>
   </div>
+
+  <%= button_to "New",
+  new_event_path,
+  method: :get,
+  class: "btn btn-accent w-80 absolute bottom-[-3.5rem] right-2" %>
 </div>

@@ -113,6 +113,7 @@
     >
       <%= link_to "CalendarApp", root_url, class: "flex-1 text-xl" %>
       <% if authenticated? %>
+        <p class="mx-4"><%= Current.user.email_address %></p>
         <%= button_to "Log out", session_path, method: :delete, class: "btn btn-primary" %>
       <% else %>
         <%= button_to "Log in", new_session_path, method: :get, class: "btn btn-primary" %>
