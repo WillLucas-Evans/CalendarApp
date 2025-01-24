@@ -6,28 +6,7 @@
   "
 >
   <%= form_with url: session_path, class: "w-full text-center text-neutral-content" do |form| %>
-    <span class="inline-grid font-bold text-[clamp(1.5rem,3vw,2.1rem)] text-center">
-      <span
-        class="
-          col-start-1 row-start-1
-          bg-[linear-gradient(90deg,theme(colors.info)_0%,theme(colors.success)_9%,theme(colors.secondary)_42%,theme(colors.primary)_47%,theme(colors.accent)_100%)]
-          bg-clip-text blur-xl [-webkit-text-fill-color:transparent]
-          [transform:translate3d(0,0,0)] before:content-[attr(data-text)]
-        "
-        aria-hidden="true"
-        data-text="Welcome Back!"
-      >
-      </span>
-      <span
-        class="
-          [&::selection]:text-base-content h-11 relative col-start-1 row-start-1
-          bg-[linear-gradient(90deg,theme(colors.info)_0%,theme(colors.success)_9%,theme(colors.secondary)_42%,theme(colors.primary)_47%,theme(colors.accent)_100%)]
-          bg-clip-text [-webkit-text-fill-color:transparent] [&::selection]:bg-blue-700/20
-        "
-      >
-        Welcome Back!
-      </span>
-    </span>
+    <%= render partial: "partials/glow", locals: { text: "Welcome Back!" } %>
 
     <hr class="mb-4">
 
