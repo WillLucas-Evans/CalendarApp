@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#new", as: :new_session
   resource :registrations, path: "signup", only: %w[ new create ]
   resource :session, except: %i[ new ]
-  resources :events, path: "calendar", only: [ :index, :new, :create ]
+  resources :events, path: "calendar"
   resources :passwords, param: :token
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

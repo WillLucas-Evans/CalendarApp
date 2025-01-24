@@ -5,5 +5,5 @@ class Event < ApplicationRecord
   validates :start_time, presence: true
   validates :end_time, presence: true
 
-  validates :end_time, numericality: { greater_than: :start_time }
+  validates :end_time, comparison: { greater_than: :start_time }
 end

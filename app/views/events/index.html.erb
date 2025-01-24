@@ -1,7 +1,13 @@
-<div class="w-full h-full">
-  <nav>
-
+<div class="w-full h-full flex">
+  <nav class="h-[calc(100%+4rem)] w-80 p-4 bg-base-300">
+    <%= button_to "New", new_event_path, method: :get, class: "btn btn-accent w-full" %>
   </nav>
 
-  <%= render "partials/day" %>
+  <div class="grow h-full pt-16 px-8 flex place-content-center">
+    <%= render partial: "partials/day",
+    locals: {
+      events: @sorted_events[@focused_date],
+      start: @focused_date,
+    } %>
+  </div>
 </div>

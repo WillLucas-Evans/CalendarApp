@@ -11,12 +11,20 @@
     </div>
   <% end %>
 
-  <div
-    class="
-      bg-primary absolute top-[10rem] w-[calc(100%-4.75rem)] h-16 right-2 rounded-lg
-      p-2
-    "
-  >
-    <p>Ballet</p>
-  </div>
+  <% if events != nil %>
+    <% events.each do |event| %>
+      <a href="<%= edit_event_path(event) %>">
+        <div
+          class="
+            absolute w-[calc(100%-4.75rem)] top-0 bg-primary right-2 rounded-lg p-2
+            overflow-scroll scrollbar-none
+          "
+          style="height: <%= ((event.end_time.to_i - event.start_time.to_i) / 1200)%>rem; top: <%= 1.25 + ((event.start_time.to_i - start.to_i) / 1200)%>rem;"
+        >
+          <%= event.name %>
+        </div>
+      </a>
+    <% end %>
+  <% end %>
+
 </div>
